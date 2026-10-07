@@ -1,0 +1,9 @@
+/target/
+/dist/
+/config.toml
+*.secret
+*.log
+.env
+.env.*
+*.pem
+*.key

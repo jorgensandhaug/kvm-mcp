@@ -1,0 +1,44 @@
+[package]
+name = "kvm-mcp"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+description = "Linux KVM MCP server with hardware adapters and scoped streaming media transfers"
+repository = "https://github.com/jorgensandhaug/kvm-mcp"
+readme = "README.md"
+
+[dependencies]
+async-trait = "0.1"
+async-stream = "0.3"
+axum = { version = "0.8", features = ["ws"] }
+base64 = "0.22"
+bytes = "1"
+futures-util = "0.3"
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
+rand = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rustls-pemfile = "2"
+webpki-roots = "1"
+rmcp = { version = "=3.5.1", features = ["server", "macros", "transport-streamable-http-server"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+subtle = "2"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "sync", "time", "net", "fs"] }
+tokio-tungstenite = { version = "0.28", features = ["rustls-tls-webpki-roots"] }
+tower-http = { version = "0.6", features = ["limit"] }
+toml = "0.8"
+url = { version = "2", features = ["serde"] }
+
+[dev-dependencies]
+http-body-util = "0.1"
+tempfile = "3"
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

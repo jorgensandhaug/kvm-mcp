@@ -1,0 +1,12 @@
+#!/bin/sh
+# Install as an executable in /etc/kvmd/user/scripts after inspecting paths.
+set -eu
+case "${1:-}" in
+  start)
+    mkdir -p /tmp/kvm-mcp-proxy
+    /usr/sbin/nginx -t -c /etc/kvmd/user/kvm-mcp/backend-proxy.conf
+    /usr/sbin/nginx -c /etc/kvmd/user/kvm-mcp/backend-proxy.conf
+    ;;
+  stop) /usr/sbin/nginx -c /etc/kvmd/user/kvm-mcp/backend-proxy.conf -s quit ;;
+  *) exit 1 ;;
+esac

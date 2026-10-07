@@ -1,0 +1,16 @@
+# Keep configuration and credential files outside the source checkout.
+listen = "127.0.0.1:9100"
+# The HTTPS origin that your MCP client AND file-transfer client can reach.
+public_url = "https://kvm.example.test:8443"
+auth_token_file = "/etc/kvmd/user/kvm-mcp/mcp.secret"
+max_upload_bytes = 68719476736
+transfer_timeout_seconds = 7200
+
+[comet]
+# Local firmware web API. Change the port to match your appliance's listener.
+url = "http://127.0.0.1"
+username = "admin"
+password_file = "/etc/kvmd/user/kvm-mcp/comet.secret"
+ports = 4
+# Optional CA for an HTTPS backend; verification is never disabled.
+# ca_file = "/etc/kvmd/user/kvm-mcp/backend-ca.pem"
